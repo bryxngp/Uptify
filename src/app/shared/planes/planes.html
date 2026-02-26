@@ -1,0 +1,60 @@
+<section class="bg-black py-16 px-4">
+    <hr>
+    <div class="max-w-6xl mx-auto text-center mb-12">
+        <ng-content select="[header]"></ng-content>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+
+        <div class="plan-card">
+            <ng-content select="[card1-content]">
+                <h3 class="plan-name">{{ listaPlanes[0].nombre }}</h3>
+                <p class="plan-price">${{ listaPlanes[0].precio }}<span> / mes</span></p>
+                <hr>
+                <ul class="features-list">
+                    @for (feat of listaPlanes[0].caracteristicas; track feat.texto) {
+                    <li><span [class]="feat.incluida ? 'check' : 'x'">{{ feat.incluida ? '✓' : '✕' }}</span> {{
+                        feat.texto }}</li>
+                    }
+                </ul>
+                <a [routerLink]="listaPlanes[0].ruta" class="btn-outline">{{ listaPlanes[0].textoBoton }}</a>
+            </ng-content>
+        </div>
+
+        <div class="plan-card featured">
+            <ng-content select="[card2-content]">
+                <span class="badge">RECOMENDADO</span>
+                <h3 class="plan-name">{{ listaPlanes[1].nombre }}</h3>
+                <p class="plan-price">${{ listaPlanes[1].precio }}<span> / mes</span></p>
+                <hr>
+                <ul class="features-list">
+                    @for (feat of listaPlanes[1].caracteristicas; track feat.texto) {
+                    <li><span [class]="feat.incluida ? 'check' : 'x'">{{ feat.incluida ? '✓' : '✕' }}</span> {{
+                        feat.texto }}</li>
+                    }
+                </ul>
+                <a [routerLink]="listaPlanes[1].ruta" class="btn-filled">{{ listaPlanes[1].textoBoton }}</a>
+            </ng-content>
+        </div>
+
+        <div class="plan-card">
+            <ng-content select="[card3-content]">
+                <h3 class="plan-name">{{ listaPlanes[2].nombre }}</h3>
+                <p class="plan-price">${{ listaPlanes[2].precio }}<span> / mes</span></p>
+                <hr>
+                <ul class="features-list">
+                    @for (feat of listaPlanes[2].caracteristicas; track feat.texto) {
+                    <li><span [class]="feat.incluida ? 'check' : 'x'">{{ feat.incluida ? '✓' : '✕' }}</span> {{
+                        feat.texto }}</li>
+                    }
+                </ul>
+                <a [routerLink]="listaPlanes[2].ruta" class="btn-outline">{{ listaPlanes[2].textoBoton }}</a>
+            </ng-content>
+        </div>
+
+    </div>
+
+    <div class="mt-10 text-center">
+        <ng-content select="[footer]"></ng-content>
+    </div>
+</section>
